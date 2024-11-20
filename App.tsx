@@ -4,7 +4,7 @@ import React from 'react'
 const App = () => {
   return (
     <View>
-      <Text>React Native Angila</Text>
+      <Text>React Native Agila</Text>
     </View>
   )
 }
