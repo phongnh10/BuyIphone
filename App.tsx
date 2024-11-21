@@ -5,7 +5,10 @@ const App = () => {
   //test lan 1
   return (
     <View>
-      <Text>React Native Agile</Text>
+      <Text>React Native Agila</Text>
+      <Text>Khang BIG GUN</Text>
+      
+
     </View>
   )
 }
