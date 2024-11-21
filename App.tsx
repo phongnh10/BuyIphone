@@ -4,7 +4,8 @@ import React from 'react'
 const App = () => {
   return (
     <View>
-      <Text>React Native Agile</Text>
+     
+      <Text>React Native</Text>
     </View>
   )
 }
