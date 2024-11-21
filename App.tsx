@@ -4,8 +4,8 @@ import React from 'react'
 const App = () => {
   return (
     <View>
-     
-      <Text>React Native</Text>
+      //test lan 1
+      <Text>React Native Agile</Text>
     </View>
   )
 }
