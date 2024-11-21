@@ -1,14 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import colors from './src/Styles/colors'
 
 const App = () => {
-  //test lan 1
+  //test laaaaaaaaan 1
   return (
     <View>
-      <Text>React Native Agila</Text>
-      <Text>Khang BIG GUN</Text>
-      
-
+      <Text style={{color: colors.Failed}}>React Native Agila</Text>
     </View>
   )
 }
