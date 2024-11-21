@@ -2,9 +2,9 @@ import { View, Text } from 'react-native'
 import React from 'react'
 
 const App = () => {
+  //test lan 1
   return (
     <View>
-      //test lan 1
       <Text>React Native Agile</Text>
     </View>
   )
