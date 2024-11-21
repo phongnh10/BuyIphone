@@ -5,6 +5,7 @@ const App = () => {
   return (
     <View>
       <Text>React Native Agila</Text>
+      <Text>KHANG</Text>
     </View>
   )
 }
