@@ -6,13 +6,6 @@ const App = () => {
   return (
     <View>
       <Text>React Native Agila</Text>
-<<<<<<< HEAD
-      <Text>KHANG</Text>
-=======
-      <Text>Khang BIG GUN</Text>
-      
-
->>>>>>> main
     </View>
   )
 }
