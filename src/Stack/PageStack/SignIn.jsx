@@ -7,21 +7,23 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
+  ToastAndroid,
 } from 'react-native';
 import React, {useState} from 'react';
 import styles from '../../Styles/Styles_SignIn';
 
-const SignIn = () => {
+const SignIn = ({navigation}) => {
   const [email, setEmail] = React.useState('');
   const [pass, setPassword] = React.useState('');
   const BtnLogin = () => {
-    Alert.alert('Chưa hoàn thành');
+    navigation.navigate('TabNavigation');
+    ToastAndroid.show('Success', ToastAndroid.SHORT);
   };
   const BtnQuenMK = () => {
     Alert.alert('Chưa hoàn thành');
   };
   const BtnDangKy = () => {
-    Alert.alert('Chưa hoàn thành');
+    navigation.navigate('SignUp');
   };
 
   return (
@@ -37,6 +39,7 @@ const SignIn = () => {
       <View>
         <Text style={styles.text1}>Email hoặc số điện thoại</Text>
         <TextInput
+          secureTextEntry={true}
           style={styles.input}
           onChangeText={setEmail}
           value={email}
