@@ -1,13 +1,12 @@
-import { View, Text } from 'react-native'
 import React from 'react'
-import colors from './src/Styles/colors'
+import { NavigationContainer } from '@react-navigation/native'
+import StackNavigation from './src/AppNavigations/StackNavigation'
 
 const App = () => {
-  //test laaaaaaaaan 1
   return (
-    <View>
-      <Text style={{color: colors.Failed}}>React Native Agila</Text>
-    </View>
+    <NavigationContainer>
+      <StackNavigation/>
+    </NavigationContainer>
   )
 }
 

@@ -1,49 +1,50 @@
-import { View, Text, StyleSheet,Image, Dimensions } from 'react-native'
-import React from 'react'
-import colors from '../../Styles/colors'
+import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
+import React, {useEffect} from 'react';
+import colors from '../../Styles/colors';
 
-const { width: screenWidth } = Dimensions.get('window');
+const {width: screenWidth} = Dimensions.get('window');
 
-const Intro = () => {
+const Intro = ({navigation}) => {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate('SignIn');
+    }, 1500);
+  }, []);
   return (
     <View style={styles.container}>
       <Image
-      style={styles.logo}
-      source={require('../../Media/image/Logo_App.png')}
-      resizeMode="contain"
+        style={styles.logo}
+        source={require('../../Media/image/Logo_App.png')}
+        resizeMode="contain"
       />
-      <Text style={styles.nameShop}>
-        iShop
-      </Text>
-      <Text style={styles.footerText}>
-        Make by Nhóm 4
-      </Text>
+      <Text style={styles.nameShop}>iShop</Text>
+      <Text style={styles.footerText}>Make by Nhóm 4</Text>
     </View>
-  )
-}
+  );
+};
 
-const styles=StyleSheet.create({
-  container:{
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center',
-    backgroundColor:colors.Primary,
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.Primary,
   },
-  logo:{
+  logo: {
     height: screenWidth * 0.5,
     width: screenWidth * 0.5,
   },
-  nameShop:{
-    marginTop:20,
-    color:'white',
-    fontSize:screenWidth * 0.1,
+  nameShop: {
+    marginTop: 20,
+    color: 'white',
+    fontSize: screenWidth * 0.1,
   },
   footerText: {
     position: 'absolute',
-    bottom: 20, 
+    bottom: 20,
     color: 'white',
-    fontSize: screenWidth * 0.04, 
+    fontSize: screenWidth * 0.04,
   },
-})
+});
 
 export default Intro;

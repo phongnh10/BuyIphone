@@ -1,56 +1,63 @@
-import { View, Text, StyleSheet,Image, Dimensions, TextInput, TouchableOpacity, Alert } from 'react-native'
-import React, { useState } from 'react'
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Dimensions,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  ToastAndroid,
+} from 'react-native';
+import React, {useState} from 'react';
 import styles from '../../Styles/Styles_SignIn';
 
-
-
-
-const SignIn = () => {
-
+const SignIn = ({navigation}) => {
   const [email, setEmail] = React.useState('');
   const [pass, setPassword] = React.useState('');
   const BtnLogin = () => {
-    Alert.alert("Chưa hoàn thành");
+    navigation.navigate('TabNavigation');
+    ToastAndroid.show('Success', ToastAndroid.SHORT);
   };
   const BtnQuenMK = () => {
-    Alert.alert("Chưa hoàn thành");
+    Alert.alert('Chưa hoàn thành');
   };
   const BtnDangKy = () => {
-    Alert.alert("Chưa hoàn thành");
+    navigation.navigate('SignUp');
   };
-    
 
   return (
     <View style={styles.container}>
       <View style={styles.viewLogo}>
         <Image
-        style={styles.logo}
-        source={require('../../Media/image/Logo_App_2.png')}
-        resizeMode="contain"
+          style={styles.logo}
+          source={require('../../Media/image/Logo_App_2.png')}
+          resizeMode="contain"
         />
       </View>
       <Text style={styles.textDN}>Đăng nhập</Text>
       <View>
         <Text style={styles.text1}>Email hoặc số điện thoại</Text>
         <TextInput
+          secureTextEntry={true}
           style={styles.input}
           onChangeText={setEmail}
           value={email}
-          placeholderTextColor="white" 
-          placeholder=''
+          placeholderTextColor="white"
+          placeholder=""
         />
         <Text style={styles.text1}>Mật khẩu</Text>
         <TextInput
           style={styles.input}
           onChangeText={setPassword}
-          placeholderTextColor="white" 
+          placeholderTextColor="white"
           secureTextEntry={true}
           value={pass}
-          placeholder=''
+          placeholder=""
         />
       </View>
       <View style={styles.quenMK}>
-        <TouchableOpacity  onPress={BtnQuenMK}>
+        <TouchableOpacity onPress={BtnQuenMK}>
           <Text style={styles.quenMKText}>Quên mật khẩu?</Text>
         </TouchableOpacity>
       </View>
@@ -59,13 +66,13 @@ const SignIn = () => {
       </TouchableOpacity>
       <View style={styles.khongCOTK}>
         <Text style={styles.khongCOTKText}>Không có tài khoản? </Text>
-        <TouchableOpacity  onPress={BtnDangKy}>
+        <TouchableOpacity onPress={BtnDangKy}>
           <Text style={styles.quenMKText}>Đăng ký</Text>
         </TouchableOpacity>
       </View>
     </View>
-  )
-}
+  );
+};
 
 // const styles=StyleSheet.create({
 //   // container:{
