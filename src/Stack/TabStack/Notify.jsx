@@ -29,6 +29,8 @@ const Notify = () => {
                 <Text style={styles.textHomNay}>Hôm nay</Text>
             </View>
             <FlatList
+                            scrollEnabled={false}
+
                 data={ListNotify}
                 renderItem={renderNotify}
                 keyExtractor={item => item.id} />
@@ -36,6 +38,7 @@ const Notify = () => {
                 <Text style={styles.textHomNay}>Hôm qua</Text>
             </View>
             <FlatList
+                scrollEnabled={false}
                 data={ListNotify}
                 renderItem={renderNotify}
                 keyExtractor={item => item.id} />
@@ -43,6 +46,8 @@ const Notify = () => {
                 <Text style={styles.textHomNay}>7 Ngày Trước</Text>
             </View>
             <FlatList
+                            scrollEnabled={false}
+
                 data={ListNotify}
                 renderItem={renderNotify}
                 keyExtractor={item => item.id} />

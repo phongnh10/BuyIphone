@@ -5,6 +5,7 @@ import Intro from '../Stack/PageStack/Intro';
 import SignUp from '../Stack/PageStack/SignUp';
 import SignIn from '../Stack/PageStack/SignIn';
 import TabNavigation from './TabNavigation';
+import Myoders from '../Stack/PageStack/Myoders';
 
 const Stack = createNativeStackNavigator();
 const StackNavigation = () => {
@@ -14,6 +15,7 @@ const StackNavigation = () => {
       <Stack.Screen name="TabNavigation" component={TabNavigation} />
       <Stack.Screen name="Intro" component={Intro} />
       <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name='MyOders' component={Myoders}/>
     </Stack.Navigator>
   );
 };
