@@ -1,7 +1,7 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const Profile = () => {
+const Profile = ({navigation}) => {
     return (
         <View style={styles.container}>
             <View style={styles.contain_1}>
@@ -16,10 +16,14 @@ const Profile = () => {
             </View>
 
             <View style={styles.section}>
-                <View>
+                <TouchableOpacity
+                onPress={()=>{
+                    navigation.navigate('MyOders');
+                }}
+                >
                     <Text style={styles.sectionTitle}>Đơn hàng của tôi</Text>
                     <Text style={styles.sectionContent}>Đã có 20 đơn đặt hàng</Text>
-                </View>
+                </TouchableOpacity>
                 <Image source={require('../../Media/icon/icon_arrow_right.png')} style={{width: 24, height: 24}} />
             </View>
 
