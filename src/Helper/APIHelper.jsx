@@ -40,7 +40,7 @@ const login = async data => {
 //*Danh mục SP
 const allCategories = async () => {
   try {
-    const response = await AxiosInstance().get('list-category.php');
+    const response = await AxiosInstance().get('category');
     if (response) {
       return response;
     }
@@ -54,7 +54,7 @@ const allCategories = async () => {
 const allProductByCategory = async idCate => {
   try {
     const response = await AxiosInstance().get(
-      `list-product-by-cate.php?id=${idCate}`,
+      `list-product-by-cate.php/${idCate}`,
     );
     if (response) {
       return response;
