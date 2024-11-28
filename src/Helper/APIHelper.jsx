@@ -3,14 +3,14 @@ import AxiosInstance from './AxiosInstance';
 //*đăng ký tài khoản
 const register = async data => {
   try {
-    const {email, password, name} = data;
+    const {name, email, password} = data;
     const body = {
+      name: name,
       email: email,
       password: password,
-      name: name,
     };
-    const response = await AxiosInstance().post('/register.php', body);
-    if (response.status === true) {
+    const response = await AxiosInstance().post('user/register', body);
+    if (response.user) {
       return true;
     }
   } catch (error) {
@@ -27,7 +27,7 @@ const login = async data => {
       email: email,
       password: password,
     };
-    const response = await AxiosInstance().post('/login.php', body);
+    const response = await AxiosInstance().post('user/login', body);
     if (response.status) {
       return true;
     }

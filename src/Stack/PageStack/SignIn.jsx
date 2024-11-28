@@ -11,16 +11,30 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import styles from '../../Styles/Styles_SignIn';
+import colors from '../../Styles/colors';
+import {login, register} from '../../Helper/APIHelper';
 
 const SignIn = ({navigation}) => {
-  const [email, setEmail] = React.useState('');
-  const [pass, setPassword] = React.useState('');
-  const BtnLogin = () => {
-    navigation.navigate('TabNavigation');
-    ToastAndroid.show('Success', ToastAndroid.SHORT);
+  const [email, setEmail] = useState('columbia2@gmail.c');
+  const [password, setPassword] = useState('12344567');
+  const [erroremail, setErrorEmail] = useState('Sai định dạng email.');
+  const [errorpassword, setErrorPassword] = useState(
+    'Độ dài mật khẩu phải từ 8 ký tự',
+  );
+  const [showPass, setShowPass] = useState(true);
+  const regexemail = /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/;
+  const isLoginEable = erroremail == '' && errorpassword == '';
+  const BtnLogin = async () => {
+    const res = await login({email, password});
+    if (res) {
+      navigation.navigate('TabNavigation');
+      ToastAndroid.show('Login successful', ToastAndroid.SHORT);
+    } else {
+      ToastAndroid.show('Login failed', ToastAndroid.SHORT);
+    }
   };
   const BtnQuenMK = () => {
-    Alert.alert('Chưa hoàn thành');
+    Alert.alert('ok');
   };
   const BtnDangKy = () => {
     navigation.navigate('SignUp');
@@ -28,6 +42,7 @@ const SignIn = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      {/* header */}
       <View style={styles.viewLogo}>
         <Image
           style={styles.logo}
@@ -36,32 +51,77 @@ const SignIn = ({navigation}) => {
         />
       </View>
       <Text style={styles.textDN}>Đăng nhập</Text>
+
+      {/* body */}
       <View>
         <Text style={styles.text1}>Email hoặc số điện thoại</Text>
         <TextInput
-          secureTextEntry={true}
           style={styles.input}
-          onChangeText={setEmail}
+          onChangeText={mail => {
+            if (regexemail.test(mail)) {
+              setErrorEmail('');
+            } else {
+              setErrorEmail('Sai định dạng email.');
+            }
+            setEmail(mail);
+          }}
           value={email}
           placeholderTextColor="white"
           placeholder=""
         />
+        <View style={{height: 18, marginBottom: 5}}>
+          {erroremail && (
+            <Text style={{fontSize: 12, color: 'red'}}>{erroremail}</Text>
+          )}
+        </View>
+
         <Text style={styles.text1}>Mật khẩu</Text>
         <TextInput
           style={styles.input}
-          onChangeText={setPassword}
+          secureTextEntry={showPass}
+          onChangeText={pass => {
+            if (pass.length < 9) {
+              setErrorPassword('Độ dài mật khẩu phải từ 8 ký tự');
+            } else {
+              setErrorPassword('');
+            }
+            setPassword(pass);
+          }}
           placeholderTextColor="white"
-          secureTextEntry={true}
-          value={pass}
+          value={password}
           placeholder=""
         />
+        <View style={{height: 18, marginBottom: 5}}>
+          {errorpassword && (
+            <Text style={{fontSize: 12, color: 'red'}}>{errorpassword}</Text>
+          )}
+        </View>
+
+        {/* eye */}
+        <TouchableOpacity
+          style={styles.eyeContainer}
+          onPress={() => setShowPass(!showPass)}>
+          <Image
+            resizeMode="contain"
+            style={styles.eye}
+            source={require('../../Media/icon/icon_eye.png')}
+          />
+        </TouchableOpacity>
       </View>
       <View style={styles.quenMK}>
         <TouchableOpacity onPress={BtnQuenMK}>
           <Text style={styles.quenMKText}>Quên mật khẩu?</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.button} onPress={BtnLogin}>
+
+      {/* footer */}
+      <TouchableOpacity
+        style={[
+          styles.button,
+          {backgroundColor: isLoginEable ? colors.Point_Color : 'gray'},
+        ]}
+        onPress={BtnLogin}
+        disabled={!isLoginEable}>
         <Text style={styles.buttonText}>Đăng nhập</Text>
       </TouchableOpacity>
       <View style={styles.khongCOTK}>
