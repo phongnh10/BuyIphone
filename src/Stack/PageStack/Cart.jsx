@@ -1,9 +1,17 @@
-import { View, Text, StyleSheet,Image, Dimensions, Touchable, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, StyleSheet,Image, Dimensions, Touchable, TouchableOpacity, ScrollView, FlatList } from 'react-native'
 import React from 'react'
 import colors from '../../Styles/colors'
 const { width: screenWidth } = Dimensions.get('window');
 
 const Cart = () => {
+
+  const dataitem = [
+    {id :1,img:require('../../Media/image/iPhone16ProMax.png'), name: 'iPhone 16 Pro Max', price: '36.500.000đ'},
+    {id :2,img:require('../../Media/image/iPhone16.png'), name: 'iPhone 16', price: '36.500.000đ'},
+    {id: 3,img:require('../../Media/image/iPhone16Plus.png'), name: 'iPhone 16 Plus', price: '36.500.000đ'},
+    {id : 4,img:require('../../Media/image/iPhone16ProMax.png'), name: 'iPhone 15', price: '36.500.000đ'},
+  ]
+
   return (
     <View style={styles.container}>
       <View style={styles.buttonBack}>
@@ -19,49 +27,61 @@ const Cart = () => {
         <Text style={styles.carttext}>Giỏ hàng</Text>
       </View>
       
-      <View style={styles.item}>
-        <Image
-          style={styles.item_image}
-          source={require('../../Media/image/iPhone16ProMax.png')}
-          resizeMode="contain"
-        />
-        <View style={styles.item_text_NPQ}>
-          <Text style={styles.item_text_name}>
-            iPhone 16 Pro Max
-          </Text>
-          <Text style={styles.item_text_price}>
-            36.500.000đ
-          </Text>
-          <View style={styles.item_view_quantity}>
-            <TouchableOpacity>
-              <Image
-                style={styles.ic_plus}
-                source={require('../../Media/icon/Plus.png')}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-            <Text style={styles.quantity}>
-              01
+      <FlatList
+        nestedScrollEnabled
+        data={dataitem}
+        keyExtractor={(item) => item.id.toString()}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.flatlist}
+        renderItem={({ item }) => (
+          <View style={styles.item}>
+          <Image
+            style={styles.item_image}
+            source={item.img}
+            resizeMode="contain"
+          />
+          <View style={styles.item_text_NPQ}>
+            <Text style={styles.item_text_name}>
+              {item.name}
             </Text>
-            <TouchableOpacity>
-              <Image
-                style={styles.ic_minus}
-                source={require('../../Media/icon/Minus.png')}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
+            <Text style={styles.item_text_price}>
+              {item.price}
+            </Text>
+            <View style={styles.item_view_quantity}>
+              <TouchableOpacity>
+                <Image
+                  style={styles.ic_plus}
+                  source={require('../../Media/icon/Plus.png')}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
+              <Text style={styles.quantity}>
+                01
+              </Text>
+              <TouchableOpacity>
+                <Image
+                  style={styles.ic_minus}
+                  source={require('../../Media/icon/Minus.png')}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
+            </View>
           </View>
+          <View style={styles.button_delete}>
+              <TouchableOpacity style={styles.delete}>
+                <Image
+                  style={styles.img_delete}
+                  source={require('../../Media/icon/icon_delete.png')}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
+            </View>
         </View>
-        <View style={styles.button_delete}>
-            <TouchableOpacity style={styles.delete}>
-              <Image
-                style={styles.img_delete}
-                source={require('../../Media/icon/icon_delete.png')}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-          </View>
-      </View>
+        )}
+        />
+
+
+      
       
       <View style={styles.buttonContainer}>
         <View style={styles.text_tongtien}>
@@ -85,6 +105,9 @@ const styles=StyleSheet.create({
     flex: 1,
     backgroundColor: colors.Primary,
     padding:20
+  },
+  flatlist:{
+    paddingBottom:100
   },
   buttonBack:{
     position: 'absolute',
@@ -155,6 +178,7 @@ const styles=StyleSheet.create({
     bottom: 20,
     width: screenWidth - 40,
     alignSelf: 'center',
+    backgroundColor: colors.Primary
   },
   addToCartButton: {
     backgroundColor: colors.Point_Color,

@@ -1,7 +1,7 @@
 import axios from 'axios';
 const AxiosInstance = (token = '', contentType = 'application/json') => {
   const axiosInstance = axios.create({
-    baseURL: 'https://vieclam.shop/',
+    baseURL: 'https://api-buyiphone-pd6b.onrender.com/',
   });
   // cmd -----> ipconfig -----> IPv4 Address (192.168.1.1)
   axiosInstance.interceptors.request.use(
