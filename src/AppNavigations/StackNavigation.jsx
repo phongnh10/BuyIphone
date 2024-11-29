@@ -6,6 +6,12 @@ import SignUp from '../Stack/PageStack/SignUp';
 import SignIn from '../Stack/PageStack/SignIn';
 import TabNavigation from './TabNavigation';
 import Myoders from '../Stack/PageStack/Myoders';
+
+import Setting from '../Stack/PageStack/Setting';
+import MyRating from '../Stack/PageStack/MyRating';
+import MyAddress from '../Stack/PageStack/MyAddress';
+import AddAddress from '../Stack/PageStack/AddAddress';
+
 import Cart from '../Stack/PageStack/Cart';
 import Detail from '../Stack/PageStack/Detail';
 import DetailNews from '../Stack/PageStack/DetailNews';
@@ -21,6 +27,13 @@ const StackNavigation = () => {
       <Stack.Screen name="TabNavigation" component={TabNavigation} />
       <Stack.Screen name="Intro" component={Intro} />
       <Stack.Screen name="SignUp" component={SignUp} />
+
+      <Stack.Screen name='MyOders' component={Myoders}/>
+      <Stack.Screen name='Setting' component={Setting}/>
+      <Stack.Screen name='MyRating' component={MyRating}/>
+      <Stack.Screen name='MyAddress' component={MyAddress}/>
+      <Stack.Screen name='AddAddress' component={AddAddress}/>
+
       <Stack.Screen name="MyOders" component={Myoders} />
       <Stack.Screen name="Cart" component={Cart} />
       <Stack.Screen name="Detail" component={Detail} />

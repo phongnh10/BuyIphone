@@ -165,8 +165,8 @@ const SignUp = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
-    paddingHorizontal: 20,
+    backgroundColor: '#202020',
+    paddingHorizontal: 20
   },
   Imagelogo: {
     width: 74,

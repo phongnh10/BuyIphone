@@ -27,31 +27,31 @@ const Profile = ({navigation}) => {
                 <Image source={require('../../Media/icon/icon_arrow_right.png')} style={{width: 24, height: 24}} />
             </View>
 
-            <View style={styles.section}>
+            <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('MyAddress')}>
                 <View>
                     <Text style={styles.sectionTitle}>Địa chỉ nhận hàng</Text>
                     <Text style={styles.sectionContent}>Có 3 địa chỉ</Text>
                 </View>
                 <Image source={require('../../Media/icon/icon_arrow_right.png')} style={{width: 24, height: 24}} />
 
-            </View>
+            </TouchableOpacity>
 
-            <View style={styles.section}>
+            <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('MyRating')}>
                 <View>
                     <Text style={styles.sectionTitle}>Đánh giá của tôi</Text>
                     <Text style={styles.sectionContent}>Đánh giá cho 4 sản phẩm</Text>
                 </View>
                 <Image source={require('../../Media/icon/icon_arrow_right.png')} style={{width: 24, height: 24}} />
 
-            </View>
-            <View style={styles.section}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Setting')}>
                 <View>
                     <Text style={styles.sectionTitle}>Cài đặt</Text>
                     <Text style={styles.sectionContent}>Thông báo, mật khẩu, trợ giúp</Text>
                 </View>
                 <Image source={require('../../Media/icon/icon_arrow_right.png')} style={{width: 24, height: 24}}/>
 
-            </View>
+            </TouchableOpacity>
         </View>
     );
 };
@@ -60,7 +60,7 @@ export default Profile
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: '#202020',
         paddingHorizontal: 20
     },
     avatar2: {
