@@ -60,7 +60,7 @@ export default Notify
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: '#202020',
         paddingHorizontal: 20
     },
     textThongBao: {
