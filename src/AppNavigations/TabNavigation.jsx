@@ -18,6 +18,7 @@ const TabNavigation = () => {
         tabBarStyle: {
           height: 50,
           paddingTop: 3,
+          backgroundColor: 'black',
         },
       }}>
       <Tab.Screen
@@ -32,7 +33,7 @@ const TabNavigation = () => {
                 style={{
                   height: 25,
                   width: 25,
-                  tintColor: focused ? 'blue' : 'black',
+                  tintColor: focused ? 'blue' : 'white',
                 }}
               />
             </View>
@@ -51,7 +52,7 @@ const TabNavigation = () => {
                 style={{
                   height: 25,
                   width: 25,
-                  tintColor: focused ? 'blue' : 'black',
+                  tintColor: focused ? 'blue' : 'white',
                 }}
               />
             </View>
@@ -70,7 +71,7 @@ const TabNavigation = () => {
                 style={{
                   height: 25,
                   width: 25,
-                  tintColor: focused ? 'blue' : 'black',
+                  tintColor: focused ? 'blue' : 'white',
                 }}
               />
             </View>
@@ -89,7 +90,7 @@ const TabNavigation = () => {
                 style={{
                   height: 25,
                   width: 25,
-                  tintColor: focused ? 'blue' : 'black',
+                  tintColor: focused ? 'blue' : 'white',
                 }}
               />
             </View>
