@@ -14,18 +14,17 @@ import colors from '../../Styles/colors';
 
 const SignUp = ({navigation}) => {
   const [name, setName] = useState('Zeri');
-  const [email, setEmail] = useState('columbia2@gmail.c');
-  const [password, setPassword] = useState('12344567');
-  const [errorname, setErrorName] = useState('Chưa nhập tên');
-  const [erroremail, setErrorEmail] = useState('Sai định dạng email.');
-  const [errorpassword, setErrorPassword] = useState(
-    'Độ dài mật khẩu phải từ 8 ký tự',
-  );
+  const [email, setEmail] = useState('columbia2@gmail.com');
+  const [password, setPassword] = useState('123445678');
+  const [errorname, setErrorName] = useState('');
+  const [erroremail, setErrorEmail] = useState('');
+  const [errorpassword, setErrorPassword] = useState('');
   const [showPass, setShowPass] = useState(true);
   const regexemail = /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/;
   const isSignUpEable =
     errorname == '' && erroremail == '' && errorpassword == '';
 
+  //*call api
   const BtnSignUp = async () => {
     const res = await register({name, email, password});
     if (res) {
