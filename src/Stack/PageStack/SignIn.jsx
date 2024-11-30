@@ -1,9 +1,7 @@
 import {
   View,
   Text,
-  StyleSheet,
   Image,
-  Dimensions,
   TextInput,
   TouchableOpacity,
   Alert,
@@ -12,18 +10,18 @@ import {
 import React, {useState} from 'react';
 import styles from '../../Styles/Styles_SignIn';
 import colors from '../../Styles/colors';
-import {login, register} from '../../Helper/APIHelper';
+import {login} from '../../Helper/APIHelper';
 
 const SignIn = ({navigation}) => {
-  const [email, setEmail] = useState('columbia2@gmail.c');
-  const [password, setPassword] = useState('12344567');
-  const [erroremail, setErrorEmail] = useState('Sai định dạng email.');
-  const [errorpassword, setErrorPassword] = useState(
-    'Độ dài mật khẩu phải từ 8 ký tự',
-  );
+  const [email, setEmail] = useState('columbia2@gmail.com');
+  const [password, setPassword] = useState('123445678');
+  const [erroremail, setErrorEmail] = useState('');
+  const [errorpassword, setErrorPassword] = useState('');
   const [showPass, setShowPass] = useState(true);
   const regexemail = /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/;
   const isLoginEable = erroremail == '' && errorpassword == '';
+
+  //*call api
   const BtnLogin = async () => {
     const res = await login({email, password});
     if (res) {

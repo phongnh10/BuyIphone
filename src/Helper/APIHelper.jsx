@@ -53,11 +53,9 @@ const allCategories = async () => {
 //* All sản phẩm theo danh mục
 const allProductByCategory = async idCate => {
   try {
-    const response = await AxiosInstance().get(
-      `list-product-by-cate.php/${idCate}`,
-    );
-    if (response) {
-      return response;
+    const response = await AxiosInstance().get(`product/products/${idCate}`);
+    if (response.status) {
+      return response.products;
     }
   } catch (error) {
     console.log(error);
