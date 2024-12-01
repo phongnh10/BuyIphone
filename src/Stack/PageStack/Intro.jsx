@@ -1,15 +1,11 @@
 import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
-import React, {useEffect} from 'react';
+import React from 'react';
 import colors from '../../Styles/colors';
+import {ActivityIndicator} from 'react-native-paper';
 
 const {width: screenWidth} = Dimensions.get('window');
 
-const Intro = ({navigation}) => {
-  useEffect(() => {
-    setTimeout(() => {
-      navigation.navigate('SignIn');
-    }, 1500);
-  }, []);
+const Intro = () => {
   return (
     <View style={styles.container}>
       <Image
@@ -19,6 +15,7 @@ const Intro = ({navigation}) => {
       />
       <Text style={styles.nameShop}>iShop</Text>
       <Text style={styles.footerText}>Make by Nhóm 4</Text>
+      <ActivityIndicator size={'small'} color="white" />
     </View>
   );
 };

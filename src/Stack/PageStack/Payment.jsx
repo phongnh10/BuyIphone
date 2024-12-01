@@ -2,17 +2,22 @@ import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import {RadioButton} from 'react-native-paper';
 
-const Payment = () => {
+const Payment = ({navigation}) => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>
-        <Image
-          resizeMode="center"
-          style={styles.logoback}
-          source={require('../../Media/icon/icon_arrow_left.png')}
-        />
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <Image
+            resizeMode="center"
+            style={styles.logoback}
+            source={require('../../Media/icon/icon_arrow_left.png')}
+          />
+        </TouchableOpacity>
         {'  '}
         Thanh toán
       </Text>

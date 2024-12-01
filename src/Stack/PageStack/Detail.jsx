@@ -56,7 +56,12 @@ const Detail = ({route, navigation}) => {
         source={require('../../Media/icon/icon_star.png')}
         resizeMode="contain"
       /> */}
-      <Text style={styles.text_rate}>4.5 (50 rewiews)</Text>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Review');
+        }}>
+        <Text style={styles.text_rate}>4.5 (50 rewiews)</Text>
+      </TouchableOpacity>
       <Text style={styles.text_mota}>Mô tả:</Text>
       <Text style={styles.text_motachitiet}>{sp.describe}</Text>
 
