@@ -7,6 +7,7 @@ import {
   Touchable,
   TouchableOpacity,
   ToastAndroid,
+  ScrollView,
 } from 'react-native';
 import React, {useState} from 'react';
 import colors from '../../Styles/colors';
@@ -18,53 +19,60 @@ const Detail = ({route, navigation}) => {
   console.log(sp);
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => {
-          let i = indexIma + 1;
-          setIndexIma(i > 2 ? 0 : i);
-        }}>
-        <Image
-          style={styles.img_iphone}
-          // source={require('../../Media/image/iPhone16ProMax.png')}
-          source={{uri: sp.image[indexIma]}}
-          resizeMode="contain"
-        />
-      </TouchableOpacity>
-      <Text style={styles.text_iphone}>{sp.name}</Text>
-      <View style={styles.view_price_quantity}>
-        <Text style={styles.text_price}>{sp.price} đ</Text>
-        <View style={styles.view_quantity}>
-          <TouchableOpacity>
-            <Image
-              style={styles.ic_plus}
-              source={require('../../Media/icon/Plus.png')}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-          <Text style={styles.quantity}>01</Text>
-          <TouchableOpacity>
-            <Image
+      <ScrollView>
+        <TouchableOpacity
+          onPress={() => {
+            let i = indexIma + 1;
+            setIndexIma(i > 2 ? 0 : i);
+          }}>
+          <Image
+            style={styles.img_iphone}
+            // source={require('../../Media/image/iPhone16ProMax.png')}
+            source={{uri: sp.image[indexIma]}}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+        <View style={{padding:20}}>
+          <Text style={styles.text_iphone}>{sp.name}</Text>
+          <View style={styles.view_price_quantity}>
+            <Text style={styles.text_price}>{sp.price} đ</Text>
+            <View style={styles.view_quantity}>
+              <TouchableOpacity>
+                <Image
+                  style={styles.ic_plus}
+                  source={require('../../Media/icon/Plus.png')}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
+              <Text style={styles.quantity}>01</Text>
+              <TouchableOpacity>
+                <Image
+                  style={styles.ic_minus}
+                  source={require('../../Media/icon/Minus.png')}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+          
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Review');
+            }}>
+            <View style={{flexDirection:'row', alignItems:'center',marginBottom:20}}>
+              <Image
               style={styles.ic_minus}
-              source={require('../../Media/icon/Minus.png')}
+              source={require('../../Media/icon/icon_star.png')}
               resizeMode="contain"
-            />
+              />
+              <Text style={styles.text_rate}>4.5 (50 rewiews)</Text>
+            </View>
+            
           </TouchableOpacity>
+          <Text style={styles.text_mota}>Mô tả:</Text>
+          <Text style={styles.text_motachitiet}>{sp.describe}</Text>
         </View>
-      </View>
-      {/* <Image
-        style={styles.ic_minus}
-        source={require('../../Media/icon/icon_star.png')}
-        resizeMode="contain"
-      /> */}
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Review');
-        }}>
-        <Text style={styles.text_rate}>4.5 (50 rewiews)</Text>
-      </TouchableOpacity>
-      <Text style={styles.text_mota}>Mô tả:</Text>
-      <Text style={styles.text_motachitiet}>{sp.describe}</Text>
-
+      </ScrollView>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.addToCartButton}
@@ -95,21 +103,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.Primary,
-    padding: 20,
   },
   img_iphone: {
     width: screenWidth * 1,
-    height: screenWidth * 0.7,
+    height: screenWidth * 1,
   },
   text_iphone: {
     color: colors.Grey_White,
     fontSize: screenWidth * 0.06,
-    marginTop: 20,
   },
   text_price: {
     color: 'white',
     fontSize: screenWidth * 0.07,
     fontWeight: 'bold',
+    marginTop:10
   },
   ic_plus: {
     height: screenWidth * 0.07,
@@ -127,7 +134,7 @@ const styles = StyleSheet.create({
   text_rate: {
     fontSize: screenWidth * 0.05,
     color: 'white',
-    marginBottom: 20,
+    marginLeft:5
   },
   text_mota: {
     fontSize: screenWidth * 0.05,
@@ -137,6 +144,7 @@ const styles = StyleSheet.create({
   text_motachitiet: {
     fontSize: screenWidth * 0.04,
     color: colors.Grey_White,
+    marginBottom:100
   },
   view_price_quantity: {
     flexDirection: 'row',
@@ -169,7 +177,7 @@ const styles = StyleSheet.create({
   buttonBack: {
     position: 'absolute',
     left: 20,
-    top: 20,
+    top: 0,
     alignSelf: 'center',
   },
   img_back: {

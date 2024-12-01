@@ -42,24 +42,10 @@ const MyAddress = () => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <View style={styles.Header}>
-            <Image
-              source={require('../../Media/icon/icon_vector.png')}
-              style={styles.iconHeader}
-            />
-            <Text style={styles.textHeader}>Địa chỉ nhận hàng</Text>
-          </View>
-        </TouchableOpacity>
-
         <View style={styles.TextHead}>
           <TouchableOpacity onPress={() => navigation.navigate('')}>
             <Text style={styles.TextQuenMatKhau}></Text>
           </TouchableOpacity>
-
           <Text style={styles.Text}>Dùng địa chỉ nhận hàng này</Text>
         </View>
         <FlatList
@@ -94,6 +80,7 @@ const MyAddress = () => {
           scrollEnabled={false}
           data={address}
           renderItem={renderAddress}
+          contentContainerStyle={styles.flatlist}
           keyExtractor={item => item.id}
           showsVerticalScrollIndicator={false}
         />
@@ -101,9 +88,9 @@ const MyAddress = () => {
       <TouchableOpacity onPress={() => navigation.navigate('AddAddress')}>
         <View
           style={{
-            width: '100%',
-            justifyContent: 'flex-end',
-            flexDirection: 'row',
+            position:'absolute',
+            right:10,
+            bottom:10
           }}>
           <Image source={require('../../Media/icon/icon_plus.png')} />
         </View>
@@ -116,7 +103,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#202020',
-    padding: 14,
+    paddingHorizontal:20,
+  },
+  flatlist: {
+    paddingBottom: 100,
   },
   addressItem: {
     backgroundColor: '#4A4A4A',
@@ -177,7 +167,7 @@ const styles = StyleSheet.create({
   TextHead: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 13,
+    marginTop: 10,
   },
 });
 

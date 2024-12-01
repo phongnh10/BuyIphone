@@ -15,19 +15,7 @@ const Setting = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.goBack();
-        }}>
-        <View style={styles.Header}>
-          <Image
-            source={require('../../Media/icon/icon_vector.png')}
-            style={styles.iconHeader}
-          />
-
-          <Text style={styles.textHeader}>Cài đặt</Text>
-        </View>
-      </TouchableOpacity>
+      
 
       <View style={styles.Text}>
         <Text style={styles.Text1}>Thông tin cá nhân</Text>
@@ -82,7 +70,7 @@ const Setting = () => {
         <View style={styles.Text}>
           <Text style={styles.Text1}>Trợ giúp</Text>
         </View>
-        <View style={styles.View4}>
+        <View style={styles.View5}>
           <Text style={styles.Text3}>FAQ</Text>
           <TouchableOpacity
             style={styles.View3}
@@ -124,7 +112,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#202020',
-    padding: 14,
+    paddingHorizontal:20
   },
   Header: {
     width: '100%',
@@ -147,6 +135,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
+    marginBottom:10
   },
   Text2: {
     color: '#B3B3B3',
@@ -163,13 +152,11 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingHorizontal: 16,
     paddingVertical: 16,
-    marginTop: 5,
   },
   input: {
     marginLeft: -5,
   },
   Text: {
-    marginTop: 18,
     marginLeft: 5,
   },
   View2: {
@@ -215,7 +202,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     width: '100%',
     height: 70,
-    marginBottom: 12,
+    marginBottom: 10,
     borderRadius: 12,
     backgroundColor: '#4A4A4A',
     paddingHorizontal: 16,

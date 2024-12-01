@@ -88,7 +88,7 @@ const Home = ({navigation}) => {
               styles.series_item,
               {
                 backgroundColor:
-                  selectId == item._id ? 'blue' : colors.Secondary,
+                  selectId == item._id ? colors.Secondary : colors.Primary,
               },
             ]}
             onPress={() => {
@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     borderRadius: 10,
+    marginBottom:40
   },
   series_item_text1: {
     color: 'white',

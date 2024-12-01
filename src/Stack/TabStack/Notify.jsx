@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View, Image, FlatList, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, FlatList, ScrollView,Dimensions } from 'react-native'
 import React, { useState } from 'react'
-
+import colors from '../../Styles/colors';
+const {width: screenWidth} = Dimensions.get('window');
 const Notify = () => {
     const [ListNotify, setListNotify] = useState([
         { id: 1, image: require('../../Media/image/Logo_App_3.png'), content: 'Đơn hàng #123456789 của bạn đã được xác nhận', date: "18:00", state: "Thành công" },
@@ -12,7 +13,7 @@ const Notify = () => {
         return (
             <View style={styles.boder} >
                 <Image style={styles.logo} source={image} />
-                <View>
+                <View style={{paddingHorizontal:0}}>
                     <Text style={styles.text}>{content} <Text style={styles.successText}>{state}</Text></Text>
                     <Text style={styles.time}>{date}</Text>
                 </View>
@@ -65,35 +66,34 @@ const styles = StyleSheet.create({
     },
     textThongBao: {
         color: 'white',
-        fontSize: 24,
-        marginTop: 30,
+        fontSize: screenWidth * 0.05,
+        marginTop: 10,
         fontWeight: 'bold'
     },
     textHomNay: {
         color: 'white',
-        fontSize: 20,
-        marginTop: 35,
+        fontSize: screenWidth * 0.04,
+        marginTop: 20,
         fontWeight: 'bold'
 
     },
     logo: {
         width: 48,
         height: 48,
-        marginLeft: 5,
     },
     text: {
-        color: '#fff',
-        fontSize: 16,
+        color: colors.White,
+        fontSize: screenWidth * 0.04,
         marginLeft: 5,
         paddingHorizontal: 10,
         fontWeight: 'bold',
-        marginRight: 20
+        marginRight: 20,
     },
     successText: {
         color: 'green',
     },
     time: {
-        fontSize: 12,
+        fontSize: screenWidth * 0.04,
         color: 'white',
         marginLeft: 3,
         paddingHorizontal: 12,
@@ -101,11 +101,11 @@ const styles = StyleSheet.create({
     },
 
     boder: {
-        backgroundColor: '#333',
-        padding: 20,
-        borderRadius: 16,
-        marginTop: 15,
-
-        flexDirection: 'row'
+        backgroundColor: colors.Black_White05,
+        padding:10,
+        borderRadius: 10,
+        flexDirection: 'row',
+        marginVertical:10,
+        alignItems:'center'
     }
 })

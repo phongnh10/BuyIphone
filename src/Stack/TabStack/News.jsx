@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 100,
     paddingHorizontal: 20,
-    marginVertical: 10,
+    marginVertical: 20,
     alignItems: 'center',
   },
   ic_search: {
@@ -114,7 +114,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 
-  tintuc_text: {},
+  tintuc_text: {
+    marginTop:10
+  },
   flatlist: {},
   view_tintuc_image: {
     marginTop: 20,
@@ -143,6 +145,7 @@ const styles = StyleSheet.create({
   },
   tintuc_text_date: {
     color: colors.Text_Secondary,
+    marginBottom:10
   },
 });
 

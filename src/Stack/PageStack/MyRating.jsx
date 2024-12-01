@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
+import colors from '../../Styles/colors';
 
 const MyRating = () => {
   const navigation = useNavigation();
@@ -52,6 +53,7 @@ const MyRating = () => {
         <Image
           source={require('../../Media/image/iPhone16Plus.png')}
           style={styles.image}
+          resizeMode="contain"
         />
         <View style={styles.info}>
           <Text style={styles.name}>{item.name}</Text>
@@ -59,7 +61,7 @@ const MyRating = () => {
           <View style={styles.rating}>
             <Image
               source={require('../../Media/icon/icon_stars.png')}
-              style={styles.image}
+              style={styles.image_star}
             />
           </View>
         </View>
@@ -73,18 +75,7 @@ const MyRating = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.goBack();
-        }}>
-        <View style={styles.Header}>
-          <Image
-            source={require('../../Media/icon/icon_vector.png')}
-            style={styles.iconHeader}
-          />
-          <Text style={styles.textHeader}> Đánh giá của tôi</Text>
-        </View>
-      </TouchableOpacity>
+      
 
       <FlatList
         data={reviews}
@@ -101,13 +92,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#202020',
-    padding: 14,
+    paddingHorizontal: 20,
   },
   card: {
-    backgroundColor: '#4A4A4A',
-    borderBottomWidth: 10,
+    backgroundColor: colors.Black_White05,
     borderRadius: 12,
     padding: 8,
+    marginBottom:20
   },
   review: {
     color: 'white',
@@ -154,10 +145,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   info: {
-    marginVertical: 29,
+    marginVertical: 10,
   },
   image: {
     marginHorizontal: 10,
+    height:100,
+    width:100,
+  },
+  image_star: {
+    marginHorizontal: 10,
+    
   },
   rating: {
     marginTop: 10,

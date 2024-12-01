@@ -8,11 +8,14 @@ import {
   Image,
   ToastAndroid,
   ActivityIndicator,
+  Dimensions,
+  ScrollView
 } from 'react-native';
 import React, {useState} from 'react';
 import {register} from '../../Helper/APIHelper';
 import colors from '../../Styles/colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+const {width: screenWidth} = Dimensions.get('window');
 
 const SignUp = ({navigation}) => {
   const [name, setName] = useState('Zeri');
@@ -47,7 +50,7 @@ const SignUp = ({navigation}) => {
       {loading ? (
         <ActivityIndicator size={'large'} color="#000ff" />
       ) : (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
           {/* header */}
           <View style={styles.ImageView}>
             <Image
@@ -164,6 +167,7 @@ const SignUp = ({navigation}) => {
               alignItems: 'center',
               flexDirection: 'row',
               justifyContent: 'center',
+              marginTop:20
             }}>
             <Text style={styles.text_SignUp}>Bạn đã có tài khoản?</Text>
 
@@ -171,7 +175,7 @@ const SignUp = ({navigation}) => {
               <Text style={styles.TextQuenMatKhau}>Đăng nhập</Text>
             </TouchableOpacity>
           </View>
-        </View>
+        </ScrollView>
       )}
     </>
   );
@@ -194,9 +198,9 @@ const styles = StyleSheet.create({
   },
   TextDangKy: {
     color: 'white',
-    fontSize: 35,
+    fontSize: 30,
     fontWeight: 'bold',
-    marginTop: 25,
+    marginVertical: 25,
   },
   input: {
     borderBottomColor: 'white',
@@ -223,7 +227,7 @@ const styles = StyleSheet.create({
   TextQuenMatKhau: {
     color: '#2F7AFF',
     fontSize: 16,
-    marginTop: 30,
+    marginTop: 0,
   },
   Button: {
     backgroundColor: '#2F7AFF',
@@ -231,7 +235,7 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 50,
+    marginTop: 20,
   },
   TextButton: {
     color: 'white',
@@ -242,7 +246,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     color: 'white',
     fontSize: 16,
-    marginTop: 32,
     marginRight: 5,
   },
 });

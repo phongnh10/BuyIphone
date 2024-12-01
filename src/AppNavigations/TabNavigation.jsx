@@ -5,6 +5,7 @@ import Home from '../Stack/TabStack/Home';
 import News from '../Stack/TabStack/News';
 import Notify from '../Stack/TabStack/Notify';
 import Profile from '../Stack/TabStack/Profile';
+import colors from '../Styles/colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +19,8 @@ const TabNavigation = () => {
         tabBarStyle: {
           height: 50,
           paddingTop: 3,
-          backgroundColor: '#202020',
+          backgroundColor: colors.Primary,
+          borderColor: colors.Black_White05
         },
       }}>
       <Tab.Screen
@@ -31,9 +33,9 @@ const TabNavigation = () => {
                 resizeMode="center"
                 source={require('.././Media/icon/icon_homeUnClick.png')}
                 style={{
-                  height: 25,
-                  width: 25,
-                  tintColor: focused ? 'blue' : 'white',
+                  height: 30,
+                  width: 30,
+                  tintColor: focused ? 'white' : colors.Secondary,
                 }}
               />
             </View>
@@ -52,7 +54,7 @@ const TabNavigation = () => {
                 style={{
                   height: 25,
                   width: 25,
-                  tintColor: focused ? 'blue' : 'white',
+                  tintColor: focused ? 'white' : colors.Secondary,
                 }}
               />
             </View>
@@ -71,7 +73,7 @@ const TabNavigation = () => {
                 style={{
                   height: 25,
                   width: 25,
-                  tintColor: focused ? 'blue' : 'white',
+                  tintColor: focused ? 'white' : colors.Secondary,
                 }}
               />
             </View>
@@ -90,7 +92,7 @@ const TabNavigation = () => {
                 style={{
                   height: 25,
                   width: 25,
-                  tintColor: focused ? 'blue' : 'white',
+                  tintColor: focused ? 'white' : colors.Secondary,
                 }}
               />
             </View>

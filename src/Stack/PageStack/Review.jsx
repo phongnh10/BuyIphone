@@ -62,72 +62,54 @@ const Review = ({navigation}) => {
   ];
 
   return (
-    <ScrollView style={styles.container} vertical>
-      <View style={styles.buttonBack}>
-        <TouchableOpacity
-          style={styles.back}
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <Image
-            style={styles.img_back}
-            source={require('../../Media/icon/icon_arrow_left.png')}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.view_carttext}>
-        <Text style={styles.carttext}>Đánh giá</Text>
-      </View>
-
-      <View style={styles.item}>
-        <Image
-          style={styles.item_image}
-          source={require('../../Media/image/iPhone16ProMax.png')}
-          resizeMode="contain"
-        />
-        <View style={styles.item_text_NPQ}>
-          <Text style={styles.item_text_name}>iPhone 16 Pro Max</Text>
-          <View style={styles.view_img_text_star}>
+    <FlatList
+      data={datadanhgia}
+      keyExtractor={item => item.id.toString()}
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={styles.danhgiachung}
+      ListHeaderComponent={
+        <>
+          <View style={styles.item}>
             <Image
-              style={styles.view_img_star}
-              source={require('../../Media/icon/icon_star.png')}
+              style={styles.item_image}
+              source={require('../../Media/image/iPhone16ProMax.png')}
               resizeMode="contain"
             />
-            <Text style={styles.item_text_star}>4.5</Text>
+            <View style={styles.item_text_NPQ}>
+              <Text style={styles.item_text_name}>iPhone 16 Pro Max</Text>
+              <View style={styles.view_img_text_star}>
+                <Image
+                  style={styles.view_img_star}
+                  source={require('../../Media/icon/icon_star.png')}
+                  resizeMode="contain"
+                />
+                <Text style={styles.item_text_star}>4.5</Text>
+              </View>
+              <Text style={styles.item_text_review}>50 reviews</Text>
+            </View>
           </View>
-
-          <Text style={styles.item_text_review}>50 reviews</Text>
-        </View>
-      </View>
-      <View style={styles.ngang}></View>
-      <TextInput
-        style={styles.input_danhgia}
-        onChangeText={setDanhgia}
-        value={danhgia}
-        placeholderTextColor={colors.Grey_White}
-        placeholder="Hãy đánh giá sản phẩm"
-      />
-
-      <FlatList
-        nestedScrollEnabled
-        data={datadanhgia}
-        keyExtractor={item => item.id.toString()}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.danhgiachung}
-        renderItem={({item}) => (
-          <View style={styles.view_cmt}>
-            <View style={styles.view_cmt_avt_name}>
-              <Image
-                style={styles.view_cmt_avt}
-                source={item.img}
-                //resizeMode="contain"
-              />
-
-              <View style={styles.view_cmt_text}>
-                <Text style={styles.view_cmt_text_name}>{item.name}</Text>
-                <View style={styles.view_cmt_text_view_star}>
-                  <Image
+          <View style={styles.ngang}></View>
+          <TextInput
+            style={styles.input_danhgia}
+            onChangeText={setDanhgia}
+            value={danhgia}
+            placeholderTextColor={colors.Grey_White}
+            placeholder="Hãy đánh giá sản phẩm"
+          />
+        </>
+      }
+      renderItem={({ item }) => (
+        <View style={styles.view_cmt}>
+          <View style={styles.view_cmt_avt_name}>
+            <Image
+              style={styles.view_cmt_avt}
+              source={item.img}
+            />
+            <View style={styles.view_cmt_text}>
+              <Text style={styles.view_cmt_text_name}>{item.name}</Text>
+              <View style={styles.view_cmt_text_view_star}>
+                {/* Render sao */}
+                <Image
                     style={styles.view_cmt_text_view_star_img}
                     source={require('../../Media/icon/icon_star.png')}
                     resizeMode="contain"
@@ -152,16 +134,16 @@ const Review = ({navigation}) => {
                     source={require('../../Media/icon/icon_star.png')}
                     resizeMode="contain"
                   />
-                </View>
               </View>
             </View>
-            <Text style={styles.view_cmt_text_danhgia}>{item.cmt}</Text>
-            <Text style={styles.date}>{item.date}</Text>
           </View>
-        )}
-      />
-    </ScrollView>
+          <Text style={styles.view_cmt_text_danhgia}>{item.cmt}</Text>
+          <Text style={styles.date}>{item.date}</Text>
+        </View>
+      )}
+    />
   );
+  
 };
 
 const styles = StyleSheet.create({
@@ -170,27 +152,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.Primary,
     padding: 20,
   },
-  buttonBack: {
-    position: 'absolute',
-    left: 20,
-    top: 0,
-    alignSelf: 'center',
-  },
-  img_back: {
-    height: screenWidth * 0.1,
-    width: screenWidth * 0.1,
-  },
-  view_carttext: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  carttext: {
-    fontSize: screenWidth * 0.08,
-    color: colors.White,
-  },
+  
   item: {
     flexDirection: 'row',
-    marginVertical: 20,
+    marginBottom: 20,
   },
   item_image: {
     height: screenWidth * 0.35,
@@ -226,7 +191,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: screenWidth * 0.04,
     alignItems: 'center',
-    marginLeft: 10,
     borderWidth: 1,
     borderColor: 'white',
     borderRadius: 10,
@@ -273,6 +237,8 @@ const styles = StyleSheet.create({
   },
   danhgiachung: {
     flexDirection: 'column',
+    backgroundColor:colors.Primary,
+    padding:20
   },
 });
 

@@ -7,7 +7,8 @@ const colors = {
   Point_Color: '#2F7AFF',
   Grey_White: '#A2A2A2',
   Success: "#27AE60",
-  Failed: '#FB4646'
+  Failed: '#FB4646',
+  Black_White05:'#3a3a3a'
 }
 
 export default colors

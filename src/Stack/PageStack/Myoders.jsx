@@ -10,6 +10,7 @@ import {
   Image,
   TextInput,
 } from 'react-native';
+import colors from '../../Styles/colors';
 
 const Myoders = () => {
   const navigation = useNavigation();
@@ -76,18 +77,6 @@ const Myoders = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.goBack();
-        }}>
-        <View style={styles.Header}>
-          <Image
-            source={require('../../Media/icon/icon_vector.png')}
-            style={styles.iconHeader}
-          />
-          <Text style={styles.textHeader}>Đơn hàng của tôi</Text>
-        </View>
-      </TouchableOpacity>
       <View style={styles.iconTim}>
         <Image
           source={require('../../Media/icon/icon_back.png')}
@@ -114,12 +103,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#202020',
-    padding: 10,
+    paddingHorizontal: 20,
   },
   orderItem: {
-    backgroundColor: '#4A4A4A',
+    backgroundColor: colors.Black_White05,
     borderRadius: 8,
-    padding: 15,
+    paddingHorizontal: 20,
+    paddingVertical:10,
     marginVertical: 8,
   },
   orderText: {
@@ -137,7 +127,6 @@ const styles = StyleSheet.create({
     color: 'green',
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 10,
   },
   detailsButton: {
     backgroundColor: '#3B82F6',
@@ -192,7 +181,6 @@ const styles = StyleSheet.create({
   iconTim: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'black',
     borderRadius: 50,
     paddingHorizontal: 16,
     paddingVertical: 5,

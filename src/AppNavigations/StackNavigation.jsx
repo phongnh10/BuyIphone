@@ -19,6 +19,7 @@ import DetailNews from '../Stack/PageStack/DetailNews';
 import Payment from '../Stack/PageStack/Payment';
 import Review from '../Stack/PageStack/Review';
 import Search from '../Stack/PageStack/Search';
+import colors from '../Styles/colors';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,18 +40,92 @@ const StackUser = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="TabNavigation" component={TabNavigation} />
 
-      <Stack.Screen name="MyOders" component={Myoders} />
-      <Stack.Screen name="MyAddress" component={MyAddress} />
+      <Stack.Screen name="MyOders" component={Myoders}
+      options={{ 
+        headerShown: true,
+        title: 'Đơn hàng của tôi',
+        headerStyle: {
+          backgroundColor: colors.Primary,
+        },
+        headerTintColor: 'white', 
+        headerShadowVisible: true,
+      }} />
+      <Stack.Screen name="MyAddress" component={MyAddress}
+      options={{ 
+        headerShown: true,
+        title: 'Địa chỉ nhận hàng',
+        headerStyle: {
+          backgroundColor: colors.Primary,
+        },
+        headerTintColor: 'white', 
+        headerShadowVisible: true,
+      }} />
       <Stack.Screen name="AddAddress" component={AddAddress} />
-      <Stack.Screen name="MyRating" component={MyRating} />
-      <Stack.Screen name="Setting" component={Setting} />
+      <Stack.Screen name="MyRating" component={MyRating} 
+      options={{ 
+        headerShown: true,
+        title: 'Đánh giá của tôi',
+        headerStyle: {
+          backgroundColor: colors.Primary,
+        },
+        headerTintColor: 'white', 
+        headerShadowVisible: true,
+      }} />
+      <Stack.Screen name="Setting" component={Setting}
+      options={{ 
+        headerShown: true,
+        title: 'Cài đặt',
+        headerStyle: {
+          backgroundColor: colors.Primary,
+        },
+        headerTintColor: 'white', 
+        headerShadowVisible: true,
+      }} />
 
-      <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="Cart" component={Cart} 
+      options={{ 
+        headerShown: true,
+        title: 'Giỏ hàng',
+        headerStyle: {
+          backgroundColor: colors.Primary,
+        },
+        headerTintColor: 'white', 
+        headerShadowVisible: true,
+      }}
+      />
       <Stack.Screen name="Detail" component={Detail} />
-      <Stack.Screen name="DetailNews" component={DetailNews} />
+      <Stack.Screen name="DetailNews" component={DetailNews} 
+      options={{ 
+        headerShown: true,
+        title: 'Tin nhanh',
+        headerStyle: {
+          backgroundColor: colors.Primary,
+        },
+        headerTintColor: 'white', 
+        headerShadowVisible: true,
+      }} />
       <Stack.Screen name="Payment" component={Payment} />
-      <Stack.Screen name="Review" component={Review} />
-      <Stack.Screen name="Search" component={Search} />
+      <Stack.Screen name="Review" component={Review}
+      options={{ 
+        headerShown: true,
+        title: 'Đánh giá',
+        headerStyle: {
+          backgroundColor: colors.Primary,
+        },
+        headerTintColor: 'white', 
+        headerShadowVisible: true,
+      }} />
+      <Stack.Screen name="Search" component={Search} 
+      options={{ 
+        headerShown: true,
+        title: 'Tìm kiếm',
+        headerStyle: {
+          backgroundColor: colors.Primary,
+        },
+        headerTintColor: 'white', 
+        headerShadowVisible: true,
+      }}
+      />
       <Stack.Screen name="StackUnkkownNav" component={StackUnkkown} />
     </Stack.Navigator>
   );

@@ -43,22 +43,6 @@ const Cart = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.buttonBack}>
-        <TouchableOpacity
-          style={styles.back}
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <Image
-            style={styles.img_back}
-            source={require('../../Media/icon/icon_arrow_left.png')}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.view_carttext}>
-        <Text style={styles.carttext}>Giỏ hàng</Text>
-      </View>
 
       <FlatList
         nestedScrollEnabled
@@ -128,10 +112,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.Primary,
-    padding: 20,
   },
   flatlist: {
-    paddingBottom: 100,
+    paddingBottom: 130,
   },
   buttonBack: {
     position: 'absolute',
@@ -190,7 +173,7 @@ const styles = StyleSheet.create({
   },
   button_delete: {
     position: 'absolute',
-    right: 0,
+    right: 20,
     top: 0,
   },
   img_delete: {
@@ -199,8 +182,8 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 20,
-    width: screenWidth - 40,
+    bottom: 0,
+    width: screenWidth,
     alignSelf: 'center',
     backgroundColor: colors.Primary,
   },
@@ -209,6 +192,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 15,
     alignItems: 'center',
+    marginBottom:20,
+    marginTop:10,
+    marginHorizontal:20,
   },
   buttonText: {
     color: colors.White,
@@ -218,7 +204,8 @@ const styles = StyleSheet.create({
   text_tongtien: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 15,
+    paddingTop:10,
+    marginHorizontal:20
   },
   text_tongtien1: {
     color: colors.White,

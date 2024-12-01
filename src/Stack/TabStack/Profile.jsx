@@ -1,7 +1,10 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View, Dimensions} from 'react-native';
 import React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
+import colors from '../../Styles/colors';
+
+const {width: screenWidth} = Dimensions.get('window');
 
 const Profile = () => {
   const navigation = useNavigation();
@@ -30,20 +33,18 @@ const Profile = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.section}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('MyOders');
-          }}>
+      <TouchableOpacity
+        style={styles.section}
+        onPress={() => navigation.navigate('MyOders')}>
+          <View>
           <Text style={styles.sectionTitle}>Đơn hàng của tôi</Text>
           <Text style={styles.sectionContent}>Đã có 20 đơn đặt hàng</Text>
-        </TouchableOpacity>
+          </View>
         <Image
           source={require('../../Media/icon/icon_arrow_right.png')}
           style={{width: 24, height: 24}}
         />
-      </View>
-
+      </TouchableOpacity>
       <TouchableOpacity
         style={styles.section}
         onPress={() => navigation.navigate('MyAddress')}>
@@ -101,8 +102,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 64,
-    marginBottom: 32,
+    marginTop: 30,
+    marginBottom: 20,
   },
 
   contain_2: {
@@ -119,36 +120,34 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 50,
-    marginBottom: 20,
   },
   name: {
-    fontSize: 24,
+    fontSize: screenWidth *0.06,
     fontWeight: 'bold',
     color: 'white',
   },
   email: {
-    fontSize: 16,
+    fontSize: screenWidth *0.05,
     color: 'gray',
-    marginBottom: 20,
   },
   section: {
     width: '100%',
-    marginBottom: 12,
-    borderRadius: 12,
-    backgroundColor: '#4A4A4A',
+    marginBottom: 20,
+    borderRadius: 10,
+    backgroundColor: colors.Black_White05,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 18,
-    paddingVertical: 16,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: screenWidth *0.05,
     fontWeight: 'bold',
     color: 'white',
   },
   sectionContent: {
-    fontSize: 16,
+    fontSize: screenWidth *0.04,
     color: 'white',
   },
 });

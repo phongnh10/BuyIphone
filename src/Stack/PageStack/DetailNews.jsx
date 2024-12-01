@@ -48,7 +48,7 @@ const styles= StyleSheet.create({
         
     },
     tintuc_text_date:{
-        marginTop:20,
+        marginTop:10,
         marginBottom:10,
         color:colors.Text_Secondary
     },
