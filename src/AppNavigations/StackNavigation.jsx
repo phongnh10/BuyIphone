@@ -1,6 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Intro from '../Stack/PageStack/Intro';
 import SignUp from '../Stack/PageStack/SignUp';
 import SignIn from '../Stack/PageStack/SignIn';
@@ -20,31 +21,59 @@ import Review from '../Stack/PageStack/Review';
 import Search from '../Stack/PageStack/Search';
 
 const Stack = createNativeStackNavigator();
-const StackNavigation = () => {
+
+//*stack for unkonwn
+const StackUnkkown = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="SignIn" component={SignIn} />
-      <Stack.Screen name="TabNavigation" component={TabNavigation} />
-      <Stack.Screen name="Intro" component={Intro} />
       <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="StackUserNav" component={StackUser} />
+    </Stack.Navigator>
+  );
+};
 
-      <Stack.Screen name='MyOders' component={Myoders}/>
-      <Stack.Screen name='Setting' component={Setting}/>
-      <Stack.Screen name='MyRating' component={MyRating}/>
-      <Stack.Screen name='MyAddress' component={MyAddress}/>
-      <Stack.Screen name='AddAddress' component={AddAddress}/>
+//*stack for user
+const StackUser = () => {
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="TabNavigation" component={TabNavigation} />
 
       <Stack.Screen name="MyOders" component={Myoders} />
+      <Stack.Screen name="MyAddress" component={MyAddress} />
+      <Stack.Screen name="AddAddress" component={AddAddress} />
+      <Stack.Screen name="MyRating" component={MyRating} />
+      <Stack.Screen name="Setting" component={Setting} />
+
       <Stack.Screen name="Cart" component={Cart} />
       <Stack.Screen name="Detail" component={Detail} />
       <Stack.Screen name="DetailNews" component={DetailNews} />
       <Stack.Screen name="Payment" component={Payment} />
       <Stack.Screen name="Review" component={Review} />
       <Stack.Screen name="Search" component={Search} />
+      <Stack.Screen name="StackUnkkownNav" component={StackUnkkown} />
     </Stack.Navigator>
   );
 };
 
-export default StackNavigation;
+const StackNavigation = () => {
+  const [isUser, setIsUser] = useState(false);
+  const [loading, setLoading] = useState(true);
+  //*check user or unknown
+  const getData = async () => {
+    const res = await AsyncStorage.getItem('email');
+    setIsUser(!!res);
+    setLoading(false);
+  };
+  useEffect(() => {
+    setTimeout(() => {
+      getData();
+    }, 1500);
+  }, []);
+  if (loading) {
+    return <Intro />;
+  }
+  return isUser ? <StackUser /> : <StackUnkkown />;
+};
 
-const styles = StyleSheet.create({});
+export default StackNavigation;

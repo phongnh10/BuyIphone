@@ -12,6 +12,7 @@ import {
 import React, {useEffect, useState} from 'react';
 import colors from '../../Styles/colors';
 import {allCategories, allProductByCategory} from '../../Helper/APIHelper';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const {width: screenWidth} = Dimensions.get('window');
 
@@ -40,7 +41,6 @@ const Home = ({navigation}) => {
   };
   useEffect(() => {
     getProduct(selectId);
-    console.log(selectId);
   }, [selectId]);
 
   return (
