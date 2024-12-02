@@ -1,8 +1,18 @@
-import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
+import React, {useState, useContext} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  Alert,
+} from 'react-native';
 import {RadioButton} from 'react-native-paper';
+import {UserContext} from '../../AppContext/UserContex';
 
-const Payment = ({navigation}) => {
+const Payment = ({navigation, route}) => {
+  const {totalPrice} = route.params;
+  const {order, setOrder} = useContext(UserContext);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
 
   return (
@@ -18,7 +28,6 @@ const Payment = ({navigation}) => {
             source={require('../../Media/icon/icon_arrow_left.png')}
           />
         </TouchableOpacity>
-        {'  '}
         Thanh toán
       </Text>
       <View style={styles.recipientInfo}>
@@ -29,9 +38,7 @@ const Payment = ({navigation}) => {
         <Text style={styles.label}>Thông tin người nhận</Text>
         <Text style={styles.text}>Thach Nguyen Phuong Trang</Text>
         <Text style={styles.text}>(+84)0920201998</Text>
-        <Text style={styles.text}>
-          25 rue Robert Latouche, Nice, 06200, Côte D'azur, France
-        </Text>
+        <Text style={styles.text}>GoVap, P10, HCM</Text>
       </View>
 
       <View style={styles.paymentMethods}>
@@ -67,11 +74,17 @@ const Payment = ({navigation}) => {
       </View>
 
       <View style={styles.orderDetails}>
-        <Text style={styles.text}>Đơn hàng: 36.500.000đ</Text>
-        <Text style={styles.text}>Vận chuyển: 500.000đ</Text>
-        <Text style={styles.total}>Tổng tiền: 37.000.000đ</Text>
+        <Text style={styles.text}>Đơn hàng: {totalPrice} đ</Text>
+        <Text style={styles.text}>Vận chuyển: 500.000 đ</Text>
+        <Text style={styles.total}>Tổng tiền: {totalPrice + 500000} đ</Text>
       </View>
-      <TouchableOpacity style={styles.confirmButton}>
+      <TouchableOpacity
+        style={styles.confirmButton}
+        onPress={() => {
+          setOrder([]);
+          Alert.alert('Thanh Toán Thành Công', 'Cảm ơn bạn đã mua hàng!');
+          navigation.goBack();
+        }}>
         <Text style={styles.confirmButtonText}>Xác nhận thanh toán</Text>
       </TouchableOpacity>
     </View>
@@ -97,7 +110,7 @@ const styles = StyleSheet.create({
   logopen: {
     position: 'absolute',
     top: 15,
-    end: 0,
+    end: 1,
     width: 24,
     height: 24,
   },

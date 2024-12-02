@@ -1,8 +1,7 @@
 import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
 import React from 'react';
 import colors from '../../Styles/colors';
-import {ActivityIndicator} from 'react-native-paper';
-
+import {ActivityIndicator} from 'react-native';
 const {width: screenWidth} = Dimensions.get('window');
 
 const Intro = () => {

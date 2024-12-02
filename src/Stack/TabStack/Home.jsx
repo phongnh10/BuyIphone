@@ -76,32 +76,33 @@ const Home = ({navigation}) => {
       </View>
       {/* cate */}
 
-      <FlatList
-        data={categories}
-        keyExtractor={item => item._id.toString()}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.series}
-        renderItem={({item}) => (
-          <TouchableOpacity
-            style={[
-              styles.series_item,
-              {
-                backgroundColor:
-                  selectId == item._id ? colors.Secondary : colors.Primary,
-              },
-            ]}
-            onPress={() => {
-              setSelectId(item._id);
-            }}>
-            <Text style={styles.series_item_text1}>
-              {item.name.substring(0, 2)}
-            </Text>
-            <Text style={styles.series_item_text2}>series</Text>
-          </TouchableOpacity>
-        )}
-      />
-
+      <View style={{alignItems: 'center', justifyContent: 'center'}}>
+        <FlatList
+          data={categories}
+          keyExtractor={item => item._id.toString()}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.series}
+          renderItem={({item}) => (
+            <TouchableOpacity
+              style={[
+                styles.series_item,
+                {
+                  backgroundColor:
+                    selectId == item._id ? colors.Secondary : colors.Primary,
+                },
+              ]}
+              onPress={() => {
+                setSelectId(item._id);
+              }}>
+              <Text style={styles.series_item_text1}>
+                {item.name.substring(0, 2)}
+              </Text>
+              <Text style={styles.series_item_text2}>series</Text>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
       {/* product */}
       <FlatList
         data={products}
@@ -149,6 +150,7 @@ const styles = StyleSheet.create({
   series: {
     flexDirection: 'row',
     //marginHorizontal: 30,
+    alignItems: 'center',
     marginTop: 20,
   },
   series_item: {
@@ -159,7 +161,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     borderRadius: 10,
-    marginBottom:40
+    marginBottom: 40,
   },
   series_item_text1: {
     color: 'white',

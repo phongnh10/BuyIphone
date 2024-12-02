@@ -9,14 +9,27 @@ import {
   ToastAndroid,
   ScrollView,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import colors from '../../Styles/colors';
+import {UserContext} from '../../AppContext/UserContex';
+
 const {width: screenWidth} = Dimensions.get('window');
 
 const Detail = ({route, navigation}) => {
-  const [indexIma, setIndexIma] = useState(0);
   const {sp} = route.params;
-  console.log(sp);
+  const [indexIma, setIndexIma] = useState(0);
+
+  const {order, setOrder} = useContext(UserContext);
+  const [price, setPrice] = useState(sp.price);
+  const [quantity, setQuantity] = useState(1);
+  const [totlaPrice, setTotalPrice] = useState(sp.price * quantity);
+  const [item, setItem] = useState({
+    name: '',
+    image: '',
+    price: 0,
+    quantity: 0,
+  });
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -32,20 +45,32 @@ const Detail = ({route, navigation}) => {
             resizeMode="contain"
           />
         </TouchableOpacity>
-        <View style={{padding:20}}>
+        <View style={{padding: 20}}>
           <Text style={styles.text_iphone}>{sp.name}</Text>
           <View style={styles.view_price_quantity}>
             <Text style={styles.text_price}>{sp.price} đ</Text>
             <View style={styles.view_quantity}>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  if (quantity < 10) {
+                    setQuantity(quantity + 1);
+                    setTotalPrice(quantity * price);
+                  }
+                }}>
                 <Image
                   style={styles.ic_plus}
                   source={require('../../Media/icon/Plus.png')}
                   resizeMode="contain"
                 />
               </TouchableOpacity>
-              <Text style={styles.quantity}>01</Text>
-              <TouchableOpacity>
+              <Text style={styles.quantity}>{quantity}</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  if (quantity > 1) {
+                    setQuantity(quantity - 1);
+                    setTotalPrice(quantity * price);
+                  }
+                }}>
                 <Image
                   style={styles.ic_minus}
                   source={require('../../Media/icon/Minus.png')}
@@ -54,20 +79,24 @@ const Detail = ({route, navigation}) => {
               </TouchableOpacity>
             </View>
           </View>
-          
+
           <TouchableOpacity
             onPress={() => {
               navigation.navigate('Review');
             }}>
-            <View style={{flexDirection:'row', alignItems:'center',marginBottom:20}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginBottom: 20,
+              }}>
               <Image
-              style={styles.ic_minus}
-              source={require('../../Media/icon/icon_star.png')}
-              resizeMode="contain"
+                style={styles.ic_minus}
+                source={require('../../Media/icon/icon_star.png')}
+                resizeMode="contain"
               />
               <Text style={styles.text_rate}>4.5 (50 rewiews)</Text>
             </View>
-            
           </TouchableOpacity>
           <Text style={styles.text_mota}>Mô tả:</Text>
           <Text style={styles.text_motachitiet}>{sp.describe}</Text>
@@ -77,7 +106,26 @@ const Detail = ({route, navigation}) => {
         <TouchableOpacity
           style={styles.addToCartButton}
           onPress={() => {
-            ToastAndroid.show('Login successful', ToastAndroid.SHORT);
+            setItem({
+              name: sp.name,
+              image: sp.image[0],
+              quantity: quantity,
+              price: sp.price,
+            });
+
+            setOrder(prevOrder => [
+              ...prevOrder,
+              {
+                name: sp.name,
+                image: sp.image[0],
+                quantity: quantity,
+                price: sp.price,
+              },
+            ]);
+            ToastAndroid.show(
+              'Thêm sản phẩm vào giỏ hàng thành công',
+              ToastAndroid.SHORT,
+            );
           }}>
           <Text style={styles.buttonText}>Thêm vào giỏ hàng</Text>
         </TouchableOpacity>
@@ -116,7 +164,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: screenWidth * 0.07,
     fontWeight: 'bold',
-    marginTop:10
+    marginTop: 10,
   },
   ic_plus: {
     height: screenWidth * 0.07,
@@ -134,7 +182,7 @@ const styles = StyleSheet.create({
   text_rate: {
     fontSize: screenWidth * 0.05,
     color: 'white',
-    marginLeft:5
+    marginLeft: 5,
   },
   text_mota: {
     fontSize: screenWidth * 0.05,
@@ -144,7 +192,7 @@ const styles = StyleSheet.create({
   text_motachitiet: {
     fontSize: screenWidth * 0.04,
     color: colors.Grey_White,
-    marginBottom:100
+    marginBottom: 100,
   },
   view_price_quantity: {
     flexDirection: 'row',

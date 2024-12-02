@@ -1,12 +1,14 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import StackNavigation from './src/AppNavigations/StackNavigation'
-
+import { UserProvider } from './src/AppContext/UserContex'
 const App = () => {
   return (
-    <NavigationContainer>
-      <StackNavigation/>
-    </NavigationContainer>
+    <UserProvider>
+      <NavigationContainer>
+        <StackNavigation/>
+      </NavigationContainer>
+    </UserProvider>
   )
 }
 

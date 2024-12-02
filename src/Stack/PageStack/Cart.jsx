@@ -8,102 +8,96 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
+  Date,
 } from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import colors from '../../Styles/colors';
+import {UserContext} from '../../AppContext/UserContex';
+
 const {width: screenWidth} = Dimensions.get('window');
 
 const Cart = ({navigation}) => {
-  const dataitem = [
-    {
-      id: 1,
-      img: require('../../Media/image/iPhone16ProMax.png'),
-      name: 'iPhone 16 Pro Max',
-      price: '36.500.000đ',
-    },
-    {
-      id: 2,
-      img: require('../../Media/image/iPhone16.png'),
-      name: 'iPhone 16',
-      price: '36.500.000đ',
-    },
-    {
-      id: 3,
-      img: require('../../Media/image/iPhone16Plus.png'),
-      name: 'iPhone 16 Plus',
-      price: '36.500.000đ',
-    },
-    {
-      id: 4,
-      img: require('../../Media/image/iPhone16ProMax.png'),
-      name: 'iPhone 15',
-      price: '36.500.000đ',
-    },
-  ];
+  const {order, setOrder} = useContext(UserContext);
 
+  const calculateTotalPriceWithFilter = orders => {
+    return orders
+      .filter(order => order.price != null && order.price !== '')
+      .reduce((total, order) => total + parseFloat(order.price), 0);
+  };
+
+  const handleRemoveItem = itemToRemove => {
+    setOrder(prevOrders =>
+      prevOrders.filter(order => order.name !== itemToRemove.name),
+    );
+  };
+  const totalPrice = calculateTotalPriceWithFilter(order);
   return (
     <View style={styles.container}>
-
-      <FlatList
-        nestedScrollEnabled
-        data={dataitem}
-        keyExtractor={item => item.id.toString()}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.flatlist}
-        renderItem={({item}) => (
-          <View style={styles.item}>
-            <Image
-              style={styles.item_image}
-              source={item.img}
-              resizeMode="contain"
-            />
-            <View style={styles.item_text_NPQ}>
-              <Text style={styles.item_text_name}>{item.name}</Text>
-              <Text style={styles.item_text_price}>{item.price}</Text>
-              <View style={styles.item_view_quantity}>
-                <TouchableOpacity>
+      {order == null || order.length == 0 ? (
+        <View>
+          <Text
+            style={{
+              fontSize: 18,
+              color: 'white',
+              textAlign: 'center',
+              marginTop: 50,
+            }}>
+            Bạn chưa có đơn hàng nào
+          </Text>
+        </View>
+      ) : (
+        <FlatList
+          nestedScrollEnabled
+          data={order}
+          keyExtractor={item => item.name + item.quantity}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.flatlist}
+          renderItem={({item}) => (
+            <View style={styles.item}>
+              <Image
+                style={styles.item_image}
+                source={{uri: item.image}}
+                resizeMode="contain"
+              />
+              <View style={styles.item_text_NPQ}>
+                <Text style={styles.item_text_name}>{item.name}</Text>
+                <Text style={styles.item_text_price}>{item.price}</Text>
+                <View style={styles.item_view_quantity}>
+                  <Text style={styles.quantity}>Số lượng: {item.quantity}</Text>
+                </View>
+              </View>
+              <View style={styles.button_delete}>
+                <TouchableOpacity
+                  style={styles.delete}
+                  onPress={() => {
+                    handleRemoveItem(item);
+                  }}>
                   <Image
-                    style={styles.ic_plus}
-                    source={require('../../Media/icon/Plus.png')}
-                    resizeMode="contain"
-                  />
-                </TouchableOpacity>
-                <Text style={styles.quantity}>01</Text>
-                <TouchableOpacity>
-                  <Image
-                    style={styles.ic_minus}
-                    source={require('../../Media/icon/Minus.png')}
+                    style={styles.img_delete}
+                    source={require('../../Media/icon/icon_delete.png')}
                     resizeMode="contain"
                   />
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={styles.button_delete}>
-              <TouchableOpacity style={styles.delete}>
-                <Image
-                  style={styles.img_delete}
-                  source={require('../../Media/icon/icon_delete.png')}
-                  resizeMode="contain"
-                />
-              </TouchableOpacity>
-            </View>
+          )}
+        />
+      )}
+      {order.length > 0 ? (
+        <View style={styles.buttonContainer}>
+          <View style={styles.text_tongtien}>
+            <Text style={styles.text_tongtien1}>Tổng tiền</Text>
+            <Text style={styles.text_tongtien2}>{totalPrice} đ</Text>
           </View>
-        )}
-      />
-
-      <View style={styles.buttonContainer}>
-        <View style={styles.text_tongtien}>
-          <Text style={styles.text_tongtien1}>Tổng tiền</Text>
-          <Text style={styles.text_tongtien2}>36.500.000đ</Text>
+          <TouchableOpacity
+            style={styles.addToCartButton}
+            onPress={() => {
+              navigation.navigate('Payment', {totalPrice});
+            }}>
+            <Text style={styles.buttonText}>Thanh toán</Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          style={styles.addToCartButton}
-          onPress={() => {
-            navigation.navigate('Payment');
-          }}>
-          <Text style={styles.buttonText}>Thanh toán</Text>
-        </TouchableOpacity>
-      </View>
+      ) : null}
     </View>
   );
 };
@@ -173,8 +167,8 @@ const styles = StyleSheet.create({
   },
   button_delete: {
     position: 'absolute',
-    right: 20,
-    top: 0,
+    right: 40,
+    top: 60,
   },
   img_delete: {
     height: screenWidth * 0.05,
@@ -192,9 +186,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 15,
     alignItems: 'center',
-    marginBottom:20,
-    marginTop:10,
-    marginHorizontal:20,
+    marginBottom: 20,
+    marginTop: 10,
+    marginHorizontal: 20,
   },
   buttonText: {
     color: colors.White,
@@ -204,8 +198,8 @@ const styles = StyleSheet.create({
   text_tongtien: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop:10,
-    marginHorizontal:20
+    paddingTop: 10,
+    marginHorizontal: 20,
   },
   text_tongtien1: {
     color: colors.White,
