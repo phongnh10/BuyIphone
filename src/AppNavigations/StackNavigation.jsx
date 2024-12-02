@@ -29,7 +29,23 @@ const StackUnkkown = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
+<<<<<<< Updated upstream
       <Stack.Screen name="StackUserNav" component={StackUser} />
+=======
+
+      <Stack.Screen name="MyOders" component={Myoders} />
+      <Stack.Screen name="Setting" component={Setting} />
+      <Stack.Screen name="MyRating" component={MyRating} />
+      <Stack.Screen name="MyAddress" component={MyAddress} />
+      <Stack.Screen name="AddAddress" component={AddAddress} />
+
+      <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="Detail" component={Detail} />
+      <Stack.Screen name="DetailNews" component={DetailNews} />
+      <Stack.Screen name="Payment" component={Payment} />
+      <Stack.Screen name="Review" component={Review} />
+      <Stack.Screen name="Search" component={Search} />
+>>>>>>> Stashed changes
     </Stack.Navigator>
   );
 };
