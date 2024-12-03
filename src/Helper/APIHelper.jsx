@@ -63,4 +63,17 @@ const allProductByCategory = async idCate => {
   return [];
 };
 
-export {register, login, allCategories, allProductByCategory};
+//* All sản phẩm
+const allProduct = async () => {
+  try {
+    const response = await AxiosInstance().get(`product/getproducts`);
+    if (response.status) {
+      return response.products;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return [];
+};
+
+export {register, login, allCategories, allProductByCategory, allProduct};

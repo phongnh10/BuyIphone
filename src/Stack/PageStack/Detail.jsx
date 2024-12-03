@@ -12,6 +12,7 @@ import {
 import React, {useState, useContext} from 'react';
 import colors from '../../Styles/colors';
 import {UserContext} from '../../AppContext/UserContex';
+import {ChangeNum} from '../../Helper/Utils';
 
 const {width: screenWidth} = Dimensions.get('window');
 
@@ -48,7 +49,7 @@ const Detail = ({route, navigation}) => {
         <View style={{padding: 20}}>
           <Text style={styles.text_iphone}>{sp.name}</Text>
           <View style={styles.view_price_quantity}>
-            <Text style={styles.text_price}>{sp.price} đ</Text>
+            <Text style={styles.text_price}>{ChangeNum(sp.price)}</Text>
             <View style={styles.view_quantity}>
               <TouchableOpacity
                 onPress={() => {
@@ -133,9 +134,7 @@ const Detail = ({route, navigation}) => {
 
       {/* back */}
       <View style={styles.buttonBack}>
-        <TouchableOpacity
-          style={styles.back}
-          onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image
             style={styles.img_back}
             source={require('../../Media/icon/icon_button_arrow.png')}

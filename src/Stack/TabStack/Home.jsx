@@ -13,6 +13,7 @@ import React, {useEffect, useState} from 'react';
 import colors from '../../Styles/colors';
 import {allCategories, allProductByCategory} from '../../Helper/APIHelper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {ChangeNum} from '../../Helper/Utils';
 
 const {width: screenWidth} = Dimensions.get('window');
 
@@ -103,6 +104,7 @@ const Home = ({navigation}) => {
           )}
         />
       </View>
+
       {/* product */}
       <FlatList
         data={products}
@@ -115,7 +117,7 @@ const Home = ({navigation}) => {
             <Image source={{uri: item.image[0]}} style={styles.imageip} />
             <View style={styles.textip}>
               <Text style={styles.itemText}>{item.name}</Text>
-              <Text style={styles.itemText1}>{item.price}</Text>
+              {<Text style={styles.itemText1}>{ChangeNum(item.price)}</Text>}
             </View>
           </TouchableOpacity>
         )}

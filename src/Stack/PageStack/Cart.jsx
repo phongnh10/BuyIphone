@@ -13,6 +13,7 @@ import {
 import React, {useContext} from 'react';
 import colors from '../../Styles/colors';
 import {UserContext} from '../../AppContext/UserContex';
+import {ChangeNum} from '../../Helper/Utils';
 
 const {width: screenWidth} = Dimensions.get('window');
 
@@ -61,7 +62,9 @@ const Cart = ({navigation}) => {
               />
               <View style={styles.item_text_NPQ}>
                 <Text style={styles.item_text_name}>{item.name}</Text>
-                <Text style={styles.item_text_price}>{item.price}</Text>
+                <Text style={styles.item_text_price}>
+                  {ChangeNum(item.price)}
+                </Text>
                 <View style={styles.item_view_quantity}>
                   <Text style={styles.quantity}>Số lượng: {item.quantity}</Text>
                 </View>
@@ -87,7 +90,7 @@ const Cart = ({navigation}) => {
         <View style={styles.buttonContainer}>
           <View style={styles.text_tongtien}>
             <Text style={styles.text_tongtien1}>Tổng tiền</Text>
-            <Text style={styles.text_tongtien2}>{totalPrice} đ</Text>
+            <Text style={styles.text_tongtien2}>{ChangeNum(totalPrice)}</Text>
           </View>
           <TouchableOpacity
             style={styles.addToCartButton}
