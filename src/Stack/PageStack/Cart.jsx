@@ -23,7 +23,11 @@ const Cart = ({navigation}) => {
   const calculateTotalPriceWithFilter = orders => {
     return orders
       .filter(order => order.price != null && order.price !== '')
-      .reduce((total, order) => total + parseFloat(order.price), 0);
+
+      .reduce(
+        (total, order) => total + parseFloat(order.price * order.quantity),
+        0,
+      );
   };
 
   const handleRemoveItem = itemToRemove => {

@@ -104,7 +104,6 @@ const Detail = ({route, navigation}) => {
             setOrder(prevOrder => {
               const isExist = prevOrder.some(item => item.name === sp.name);
 
-              // Nếu sản phẩm đã tồn tại, chỉ hiển thị thông báo
               if (isExist) {
                 ToastAndroid.show(
                   'Sản phẩm đã có trong giỏ hàng',
@@ -113,7 +112,6 @@ const Detail = ({route, navigation}) => {
                 return prevOrder;
               }
 
-              // Nếu sản phẩm chưa tồn tại, thêm mới và hiển thị thông báo thành công
               ToastAndroid.show(
                 'Thêm sản phẩm vào giỏ hàng thành công',
                 ToastAndroid.SHORT,
