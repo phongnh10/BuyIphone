@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {RadioButton} from 'react-native-paper';
 import {UserContext} from '../../AppContext/UserContex';
+import {ChangeNum} from '../../Helper/Utils';
 
 const Payment = ({navigation, route}) => {
   const {totalPrice} = route.params;
@@ -74,9 +75,11 @@ const Payment = ({navigation, route}) => {
       </View>
 
       <View style={styles.orderDetails}>
-        <Text style={styles.text}>Đơn hàng: {totalPrice} đ</Text>
+        <Text style={styles.text}>Đơn hàng: {ChangeNum(totalPrice)}</Text>
         <Text style={styles.text}>Vận chuyển: 500.000 đ</Text>
-        <Text style={styles.total}>Tổng tiền: {totalPrice + 500000} đ</Text>
+        <Text style={styles.total}>
+          Tổng tiền: {ChangeNum(totalPrice + 500000)}
+        </Text>
       </View>
       <TouchableOpacity
         style={styles.confirmButton}
