@@ -23,12 +23,6 @@ const Detail = ({route, navigation}) => {
   const [price, setPrice] = useState(sp.price);
   const [quantity, setQuantity] = useState(1);
   const [totlaPrice, setTotalPrice] = useState(sp.price * quantity);
-  const [item, setItem] = useState({
-    name: '',
-    image: '',
-    price: 0,
-    quantity: 0,
-  });
 
   return (
     <View style={styles.container}>
@@ -106,26 +100,34 @@ const Detail = ({route, navigation}) => {
         <TouchableOpacity
           style={styles.addToCartButton}
           onPress={() => {
-            setItem({
-              name: sp.name,
-              image: sp.image[0],
-              quantity: quantity,
-              price: sp.price,
-            });
+            setOrder(prevOrder => {
+              const isExist = prevOrder.some(item => item.name === sp.name);
 
-            setOrder(prevOrder => [
-              ...prevOrder,
-              {
-                name: sp.name,
-                image: sp.image[0],
-                quantity: quantity,
-                price: sp.price,
-              },
-            ]);
-            ToastAndroid.show(
-              'Thêm sản phẩm vào giỏ hàng thành công',
-              ToastAndroid.SHORT,
-            );
+              // Nếu sản phẩm đã tồn tại, chỉ hiển thị thông báo
+              if (isExist) {
+                ToastAndroid.show(
+                  'Sản phẩm đã có trong giỏ hàng',
+                  ToastAndroid.SHORT,
+                );
+                return prevOrder;
+              }
+
+              // Nếu sản phẩm chưa tồn tại, thêm mới và hiển thị thông báo thành công
+              ToastAndroid.show(
+                'Thêm sản phẩm vào giỏ hàng thành công',
+                ToastAndroid.SHORT,
+              );
+
+              return [
+                ...prevOrder,
+                {
+                  name: sp.name,
+                  image: sp.image[0],
+                  quantity: quantity,
+                  price: sp.price,
+                },
+              ];
+            });
           }}>
           <Text style={styles.buttonText}>Thêm vào giỏ hàng</Text>
         </TouchableOpacity>
