@@ -105,11 +105,18 @@ const Detail = ({route, navigation}) => {
               const isExist = prevOrder.some(item => item.name === sp.name);
 
               if (isExist) {
+                const updatedOrder = prevOrder.map(item =>
+                  item.name === sp.name
+                    ? {...item, quantity: item.quantity + quantity}
+                    : item,
+                );
+
                 ToastAndroid.show(
-                  'Sản phẩm đã có trong giỏ hàng',
+                  'Cập nhật số lượng sản phẩm trong giỏ hàng',
                   ToastAndroid.SHORT,
                 );
-                return prevOrder;
+
+                return updatedOrder;
               }
 
               ToastAndroid.show(

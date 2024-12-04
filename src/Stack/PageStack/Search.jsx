@@ -15,7 +15,7 @@ import {ChangeNum} from '../../Helper/Utils';
 
 const {width: screenWidth} = Dimensions.get('window');
 const Search = ({navigation}) => {
-  const [search, setSearch] = React.useState('');
+  const [search, setSearch] = useState('');
   const [products, setProducts] = useState(null);
   const [productsFilter, setProductsFilter] = useState(null);
 
