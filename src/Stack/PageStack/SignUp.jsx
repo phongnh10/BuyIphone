@@ -9,7 +9,7 @@ import {
   ToastAndroid,
   ActivityIndicator,
   Dimensions,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import React, {useState} from 'react';
 import {register} from '../../Helper/APIHelper';
@@ -20,7 +20,7 @@ const {width: screenWidth} = Dimensions.get('window');
 const SignUp = ({navigation}) => {
   const [name, setName] = useState('Zeri');
   const [email, setEmail] = useState('columbia2@gmail.com');
-  const [password, setPassword] = useState('123445678');
+  const [password, setPassword] = useState('12345678');
   const [errorname, setErrorName] = useState('');
   const [erroremail, setErrorEmail] = useState('');
   const [errorpassword, setErrorPassword] = useState('');
@@ -112,7 +112,7 @@ const SignUp = ({navigation}) => {
               secureTextEntry={showPass}
               value={password}
               onChangeText={pass => {
-                if (pass.length < 9) {
+                if (pass.length < 8) {
                   setErrorPassword('Độ dài mật khẩu phải từ 8 ký tự');
                 } else {
                   setErrorPassword('');
@@ -167,7 +167,7 @@ const SignUp = ({navigation}) => {
               alignItems: 'center',
               flexDirection: 'row',
               justifyContent: 'center',
-              marginTop:20
+              marginTop: 20,
             }}>
             <Text style={styles.text_SignUp}>Bạn đã có tài khoản?</Text>
 
