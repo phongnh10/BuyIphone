@@ -92,7 +92,7 @@ const SignIn = () => {
               style={styles.input}
               secureTextEntry={showPass}
               onChangeText={pass => {
-                if (pass.length < 9) {
+                if (pass.length < 8) {
                   setErrorPassword('Độ dài mật khẩu phải từ 8 ký tự');
                 } else {
                   setErrorPassword('');
